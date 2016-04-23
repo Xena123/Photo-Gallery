@@ -1,0 +1,99 @@
+			
+
+			/*  BODY STYLES */  
+
+body {
+	margin: 0;
+}
+
+
+			/*  PHOTO GALLERY STYLES */
+#main-wrapper {
+	margin: 0 1rem 3rem 1rem;
+}
+
+#imageGallery {
+	margin-top: 4.6rem;
+	padding: 0 8rem; 
+}
+
+.photo {
+	float: left;
+	text-align: center;
+	padding: 1.2rem;
+}
+
+#overlay {
+	background: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	text-align: center;
+	z-index: 3;
+	display: inline-block;
+}
+
+#overlay > img {
+	margin-top: 10%;
+}
+
+#overlay p {
+	color: white;
+	margin: auto;
+	padding: 2rem;
+}
+
+
+			/*  SEARCH BAR STYLES */
+header {
+	
+}
+
+#search {
+	position: fixed;
+	top: 0;
+	width: 100%;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, .7);
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+input {
+    font-size: 120%;
+    border: 1px solid #999;
+    padding: 5px;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+#prevArrow,
+#nextArrow {
+    display: block;
+    position: fixed;
+    top: 40vh;
+    margin: 0;
+    width: 8%;
+}
+
+#prevArrow {
+    left: 0;
+}
+
+#nextArrow {
+    right: 0;
+}
+
+
+
