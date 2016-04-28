@@ -1,62 +1,62 @@
+        
 
-      // PHOTO GALLERY //
+        // PHOTO GALLERY //
+
 
 var $overlay = $('<div id="overlay"></div>');
 var $image = $('<img>');
 var $caption = $('<p></p>');
-
-// Add arrow variables
 var $prevArrow = $('<div id="prevArrow"><img src="icons/prevArrow.png" alt="previous" /></div>');
 var $nextArrow = $('<div id="nextArrow"><img src="icons/nextArrow.png" alt="next" /></div>');
-// Keep track of image index for arrow buttons //
-var $index = 0;
 
+// Add overlay to the body
+$('body').append($overlay);
 
-
-//Append the overlay to the image
+// Add the image to the overlay
 $overlay.append($image);
 
-//Append the caption to the overlay
+// Add the caption to the overlay
 $overlay.append($caption);
 
-//Append the overlay to the body
-$("body").append($overlay);
-
-
 //Append buttons to overlay
-  $overlay.append($prevArrow);
-  $overlay.append($nextArrow);
+$overlay.append($prevArrow);
+$overlay.append($nextArrow);
 
+//Capture the click event on a link to an image
+$('#imageGallery a').click(function(event) {
 
-//Declare a click function 
-$("#imageGallery a").click(function(event) {
+  //Prevent the link from following through 
+  event.preventDefault();
+  
+  var imageLocation = $(this).attr('href');
 
-  //Prevent the default event when clicked (which is to go through to the link of the image)
-	event.preventDefault();
-
-  //Get the image location
-	var imageLocation = $(this).attr("href");
-
-	$image.attr("src", imageLocation);
+  //Update the overlay with the image linked in the link
+  $image.attr('src', imageLocation);
 
   //Show the overlay
-	$overlay.fadeIn(1000);
+  $overlay.fadeIn(1000);
 
   //Stop the page from scrolling when the lightbox is active
   document.body.style.overflow='hidden'
 
-  // get index for current image //
-  $index = $(this).parent().index();
-
   //Show the caption
-	var captionText = $(this).children("img").attr("alt");
-	$caption.text(captionText);
-
-  // add back and forward navigation buttons when lightbox is visible //
-  $image.after($prevArrow);
-  $image.before($nextArrow);
+  var captionText = $(this).children("img").attr("alt");
+  $caption.text(captionText);
 
 });
+
+//When you click the overlay the overlay disappears 
+  $image.click(function(event) {
+    $overlay.fadeOut(1000);
+    //Allow the page to scroll when the lightbox is inactive
+    document.body.style.overflow='auto'
+});
+
+
+      // PHOTO GALLERY NAVIGATION
+
+
+var $index = 0;
 
 /* When the next button is clicked... */
 $nextArrow.on("click", function(event) {
@@ -81,14 +81,6 @@ $("body").keydown(function(event){
   }
 });
 
-//When you click the overlay the overlay disappears 
-$overlay.click(function() {
-	$overlay.hide();
-  //Allow the page to scroll when the lightbox is inactive
-  document.body.style.overflow='auto'
-});
-
-
 
 function updateImage(imageLocation, imageCaption) {
     /* update image source */
@@ -97,17 +89,15 @@ function updateImage(imageLocation, imageCaption) {
     $caption.text(imageCaption);
 }
 
-
-
 function nextImage() {
      /* update index */
     $index++;
     /* loop up to first image in gallery */
-    if ($index >= $("#imageGallery .photo").length) {
+    if ($index >= $("#imageGallery li").length) {
         $index = 0;
     }
     /* use index to get next image */
-    var nextImage = $("#imageGallery .photo").get($index).getElementsByTagName("a");
+    var nextImage = $("#imageGallery li").get($index).getElementsByTagName("a");
     /* get new image location and caption */
     var imageLocation = $(nextImage).attr("href");
     var imageCaption =  $(nextImage).children("img").attr("alt");
@@ -115,17 +105,15 @@ function nextImage() {
     updateImage(imageLocation, imageCaption);
 }
 
-
-
 function previousImage() {
     /* update the index */
     $index--;
     /* loop back to last image in gallery */
     if ($index < 0) {
-        $index = $("#imageGallery .photo").length - 1;
+        $index = $("#imageGallery li").length - 1;
     }
     /* get the previous image by index */
-    var prevImage = $("#imageGallery .photo").get($index).getElementsByTagName("a");
+    var prevImage = $("#imageGallery li").get($index).getElementsByTagName("a");
     /* update the image location and caption */
     var imageLocation = $(prevImage).attr("href");
     var imageCaption =  $(prevImage).children("img").attr("alt");
@@ -134,9 +122,8 @@ function previousImage() {
 }
 
 
-
-
       // SEARCH BAR //
+
 
 // Get the images
 var $imgs = $('#imageGallery img'); 
