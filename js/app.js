@@ -37,7 +37,7 @@ $('#imageGallery a').click(function(event) {
   $overlay.fadeIn(1000);
 
   //Stop the page from scrolling when the lightbox is active
-  //document.body.style.overflow='hidden'
+  document.body.style.overflow='hidden';
 
   //Show the caption
   var captionText = $(this).children("img").attr("alt");
@@ -50,7 +50,7 @@ $('body').keydown(function(e){
     console.log(e.which);
     if(e.which == 27){
         $overlay.fadeOut(1000);
-        //document.body.style.overflow='auto'
+        document.body.style.overflow='auto';
     }
 });
 
@@ -58,7 +58,7 @@ $('body').keydown(function(e){
   $image.click(function(event) {
     $overlay.fadeOut(1000);
     //Allow the page to scroll when the lightbox is inactive
-    //document.body.style.overflow='auto'
+    document.body.style.overflow='auto';
 });
 
 

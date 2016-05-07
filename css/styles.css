@@ -118,8 +118,9 @@ input {
 	#prevArrow,
 	#nextArrow {
 		margin: 0;
-
+	}
 }
+
 @media (max-width: 768px) {
 	#prevArrow img,
 	#nextArrow img {
