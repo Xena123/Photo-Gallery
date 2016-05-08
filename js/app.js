@@ -8,6 +8,7 @@ var $image = $('<img>');
 var $caption = $('<p></p>');
 var $prevArrow = $('<div id="prevArrow"><img src="icons/prevArrow.png" alt="previous" /></div>');
 var $nextArrow = $('<div id="nextArrow"><img src="icons/nextArrow.png" alt="next" /></div>');
+var $closeLightbox = $('<div id="closeLightbox"><img src="icons/close.png" alt="next" /></div>');
 
 // Add overlay to the body
 $('body').append($overlay);
@@ -19,6 +20,7 @@ $overlay.append($image);
 $overlay.append($caption);
 
 //Append buttons to overlay
+$overlay.append($closeLightbox);
 $overlay.append($prevArrow);
 $overlay.append($nextArrow);
 
@@ -55,7 +57,7 @@ $('body').keydown(function(e){
 });
 
 //When you click the overlay the overlay disappears 
-  $image.click(function(event) {
+  $closeLightbox.click(function(event) {
     $overlay.fadeOut(1000);
     //Allow the page to scroll when the lightbox is inactive
     document.body.style.overflow='auto';

@@ -76,6 +76,19 @@ body {
     margin-right: 1.5rem;
 }
 
+#closeLightbox {
+	z-index: 7;
+	position: fixed;
+	top: 0;
+	right: 0;
+	margin: 10px 10px 0 0;
+}
+
+#closeLightbox img {
+	height: 50px;
+}
+
+
 
 			/*  SEARCH BAR STYLES */
 header {
