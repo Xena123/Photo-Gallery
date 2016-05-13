@@ -67,8 +67,6 @@ $('body').keydown(function(e){
       // PHOTO GALLERY NAVIGATION
 
 
-var $index = 0;
-
 /* When the next button is clicked... */
 $nextArrow.on("click", function(event) {
     getNextImage();
@@ -105,7 +103,7 @@ function getCurrentImage(currentImage) {
 
 function getPrevImage() {//Create function called getPrevImage
     imageParent = $(thisImage).parent().prev();
-    if(imageParent.length!=0){
+    if(imageParent.length!==0){
       thisImage = $(imageParent).children("a");
       // imageLocation = $(thisImage).attr("href");
       // $image.attr("src", imageLocation);
@@ -116,7 +114,7 @@ function getPrevImage() {//Create function called getPrevImage
 
 function getNextImage() {//Create function called getNextImage
     imageParent = $(thisImage).parent().next();
-    if(imageParent.length!=0){
+    if(imageParent.length!==0){
     thisImage = $(imageParent).children("a");
     // imageLocation = $(thisImage).attr("href");
     // $image.attr("src", imageLocation);
@@ -126,7 +124,7 @@ function getNextImage() {//Create function called getNextImage
 
 
 
-       // SEARCH BAR //
+      // SEARCH BAR //
 
 
 // Get the images
@@ -177,8 +175,5 @@ var cache = [];
     $search.on('keyup', filter);         
   }     
 }());
-
-
-
 
 
