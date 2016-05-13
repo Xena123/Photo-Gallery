@@ -30,10 +30,10 @@ $('#imageGallery a').click(function(event) {
   //Prevent the link from following through 
   event.preventDefault();
   
-  var imageLocation = $(this).attr('href');
+  getCurrentImage(this);
 
   //Update the overlay with the image linked in the link
-  $image.attr('src', imageLocation);
+
 
   //Show the overlay
   $overlay.fadeIn(1000);
@@ -71,69 +71,62 @@ var $index = 0;
 
 /* When the next button is clicked... */
 $nextArrow.on("click", function(event) {
-    nextImage();
+    getNextImage();
 });
 /* When right arrow key is pressed... */
 $("body").keydown(function(event){
     if ( event.which == 39 ) {
-        nextImage();
+        getNextImage();
   }
 });
 
 /* When the previous button is clicked... */
 $prevArrow.on("click", function(event){
-    previousImage();
+    getPrevImage();
 });
 
 /* When left arrow key is pressed... */
 $("body").keydown(function(event){
     if ( event.which == 37 ) {
-        previousImage();
+        getPrevImage();
   }
 });
 
 
-function updateImage(imageLocation, imageCaption) {
-    /* update image source */
-    $image.attr("src", imageLocation);
-    /* set caption text */
-    $caption.text(imageCaption);
+function getCurrentImage(currentImage) {
+    thisImage = currentImage;
+    var imageLocation = $(currentImage).attr("href");// accessing attributes from currentImage to pull the href value 
+    $image.attr("src", imageLocation);//Update overlay with the image linked in the link
+
+    //Get child's alt attribute and set caption
+    var captionText = $(currentImage).children("img").attr("alt");
+    $caption.text(captionText);
 }
 
-function nextImage() {
-     /* update index */
-    $index++;
-    /* loop up to first image in gallery */
-    if ($index >= $("#imageGallery li").length) {
-        $index = 0;
+function getPrevImage() {//Create function called getPrevImage
+    imageParent = $(thisImage).parent().prev();
+    if(imageParent.length!=0){
+      thisImage = $(imageParent).children("a");
+      // imageLocation = $(thisImage).attr("href");
+      // $image.attr("src", imageLocation);
     }
-    /* use index to get next image */
-    var nextImage = $("#imageGallery li").get($index).getElementsByTagName("a");
-    /* get new image location and caption */
-    var imageLocation = $(nextImage).attr("href");
-    var imageCaption =  $(nextImage).children("img").attr("alt");
-    /* update the overlay image */
-    updateImage(imageLocation, imageCaption);
+    getCurrentImage(thisImage);
+    
 }
 
-function previousImage() {
-    /* update the index */
-    $index--;
-    /* loop back to last image in gallery */
-    if ($index < 0) {
-        $index = $("#imageGallery li").length - 1;
+function getNextImage() {//Create function called getNextImage
+    imageParent = $(thisImage).parent().next();
+    if(imageParent.length!=0){
+    thisImage = $(imageParent).children("a");
+    // imageLocation = $(thisImage).attr("href");
+    // $image.attr("src", imageLocation);
     }
-    /* get the previous image by index */
-    var prevImage = $("#imageGallery li").get($index).getElementsByTagName("a");
-    /* update the image location and caption */
-    var imageLocation = $(prevImage).attr("href");
-    var imageCaption =  $(prevImage).children("img").attr("alt");
-    /* update the overlay */
-    updateImage(imageLocation, imageCaption);
+    getCurrentImage(thisImage);
 }
 
 
-      // SEARCH BAR //
+
+       // SEARCH BAR //
 
 
 // Get the images
